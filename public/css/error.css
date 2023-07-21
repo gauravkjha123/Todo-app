@@ -1,0 +1,29 @@
+.errorContainer{
+    position:absolute;
+    height: 15vh;
+    width: 60%;
+    left:50% ;
+    top: 5%;
+    color: white;
+    font: 2.5rem sans-serif;
+    transform: translate(-50%, 0);
+    text-align: center;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+}
+
+.fade{
+    animation: fadeout 2.5s ease ;
+}
+
+@keyframes fadeout {
+    0%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

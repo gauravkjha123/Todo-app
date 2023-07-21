@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/error.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>home</title>
+</head>
+<body class="body">
+   
+    <div class="todo-container">
+        <div class="header">     <h1>TODO App</h1></div>
+        <div  class="description-details upper-border">
+            <span>DISCRIPTION</span>
+            <input id="taskName" type="text" placeholder="What do you need to do ?">
+        </div>
+        <div class="category-and-date-details flex upper-border">
+            <div class="categorys-details">
+                <div class="flex ">
+                    <div style="height: 100%;">
+                        <span>CATEGORYS</span><br>
+                        <p id="CategoryText" style="font-size: 1rem;color: gray;">Chose a category</p>
+                    </div>
+                    <div id="showCategory">
+                        <i class="fas fa-caret-down"></i>
+                    </div>
+                </div>
+                <div class="categoryList">
+ 
+                </div>
+            </div>
+            <div class="date-details flex flex-1">
+                <div style="height: 100%;">
+                    <span>DUE DATE</span>
+                    <p id="dateText" style="font-size: 1rem;color: gray;">dd/mm//yyyy</p>
+                    <input type="date" style="display: none;">
+                </div>
+                <div  class="showDate">
+                    <i class="fas fa-caret-down"></i>
+                </div>
+            </div>
+        </div>
+        <div class="action-btn flex upper-border">
+            <div>
+                <button id="add"><i class="fas fa-plus"></i> &nbsp; ADD TASK</button>
+                <button id="delete"><i class="fas fa-trash-alt"></i>&nbsp; DELETE TASK</button>
+            </div>
+        </div>
+        <div id="taskList" class="show-task upper-border">
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="./js/home.js"></script>
+</body>
+</html>
