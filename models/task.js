@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const contactSchema=mongoose.Schema({
+const taskSchema=mongoose.Schema({
     name:{
         type:String,
         require:true
@@ -9,9 +9,9 @@ const contactSchema=mongoose.Schema({
         require:false
     },
     category:{
-        type: mongoose.Schema.ObjectId,
+        type:String,
         require:false
     }
 })
 
-module.exports.TaskModel=mongoose.model("task",contactSchema);
+module.exports.TaskModel=mongoose.model("task",taskSchema);

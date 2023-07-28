@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router();
-const homeController =require('../controllers/api/home.controller');
+const {showTask,createTask,deleteTask} =require('../controllers/home.controller');
 
-router.get('/',homeController.home);
-router.post('/create',homeController.create);
-router.use('/category',require('./category.route.js'))
+router.get('/',showTask);
+router.post('/create',createTask);
+router.post('/delete',deleteTask);
 
 
 module.exports= router;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,54 +8,104 @@
     <link rel="stylesheet" href="./css/error.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <title>home</title>
 </head>
+
 <body class="body">
-   
     <div class="todo-container">
-        <div class="header">     <h1>TODO App</h1></div>
-        <div  class="description-details upper-border">
-            <span>DISCRIPTION</span>
-            <input id="taskName" type="text" placeholder="What do you need to do ?">
+        <div class="header">
+            <h1>TODO App</h1>
         </div>
-        <div class="category-and-date-details flex upper-border">
-            <div class="categorys-details">
-                <div class="flex ">
-                    <div style="height: 100%;">
-                        <span>CATEGORYS</span><br>
-                        <p id="CategoryText" style="font-size: 1rem;color: gray;">Chose a category</p>
+        <form action="./create" method="post">
+            <div class="description-details upper-border">
+                <span>DISCRIPTION</span>
+                <input id="taskName" type="text" name="name" placeholder="What do you need to do ?" required>
+            </div>
+            <div class="category-and-date-details flex upper-border">
+                <div class="categorys-details">
+                    <div class="flex ">
+                        <div style="height: 100%;">
+                            <span>CATEGORYS</span><br>
+                            <p id="CategoryText" style="font-size: 1rem;color: gray;">Chose a category</p>
+                            <input type="hidden" id="categoryInput" name="category" value="">
+                        </div>
+                        <div id="showCategory">
+                            <i class="fas fa-caret-down"></i>
+                        </div>
                     </div>
-                    <div id="showCategory">
+                    <div class="categoryList">
+                    </div>
+                </div>
+                <div class="date-details flex flex-1">
+                    <div style="height: 100%;">
+                        <span>DUE DATE</span>
+                        <p id="dateText" style="font-size: 1rem;color: gray;">dd/mm//yyyy</p>
+                        <input type="hidden" id="dateInput" name="date" value="">
+                    </div>
+                    <div class="showDate">
                         <i class="fas fa-caret-down"></i>
                     </div>
                 </div>
-                <div class="categoryList">
- 
+            </div>
+            <div class="action-btn flex upper-border">
+                <div>
+                    <button type="submit" id="add"><i class="fas fa-plus"></i> &nbsp; ADD TASK</button>
+                    <button type="" id="delete"><i class="fas fa-trash-alt"></i>&nbsp; DELETE TASK</button>
                 </div>
             </div>
-            <div class="date-details flex flex-1">
-                <div style="height: 100%;">
-                    <span>DUE DATE</span>
-                    <p id="dateText" style="font-size: 1rem;color: gray;">dd/mm//yyyy</p>
-                    <input type="date" style="display: none;">
-                </div>
-                <div  class="showDate">
-                    <i class="fas fa-caret-down"></i>
-                </div>
-            </div>
-        </div>
-        <div class="action-btn flex upper-border">
-            <div>
-                <button id="add"><i class="fas fa-plus"></i> &nbsp; ADD TASK</button>
-                <button id="delete"><i class="fas fa-trash-alt"></i>&nbsp; DELETE TASK</button>
-            </div>
-        </div>
+        </form>
+        <!-- Task lists -->
         <div id="taskList" class="show-task upper-border">
+            <% data.map((value)=>{ %>
+                <div class="flex upper-border taskListContainer">
+                    <div class="flex taskContainer">
+                        <div class="checkBoxContainer"><input id="checkBox" type="checkbox" value="<%= value.id %>"></div>
+                        <div class="taskDetailsContainer">
+                            <p> <%= value.name %></p>
+                            <div class="flex dateContainer">
+                                <div><i class="far fa-calendar-minus"></i></div>
+                                <p style="margin-left: 5px;">
+                                    <% if (value.date) { %>
+                                      <% const options = {
+                                           year: 'numeric',
+                                           month: 'long',
+                                           day: 'numeric',
+                                         };%>
+                                      <%= value.date.toLocaleDateString(undefined, options) %>
+                                    <% } else { %>
+                                      No Deadline
+                                    <% } %>
+                                  </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% if(value.category){ %>
+                        <% if(value.category==="Persnol"){ %>
+                        <div class="categoryShowbtn" style="background-color: pink;"> <%= value.category %></div>
+                        <%}%>
+                        <% if(value.category==="Work"){ %>
+                            <div class="categoryShowbtn" style="background-color: green;"> <%= value.category %></div>
+                        <%}%>   
+                        <% if(value.category==="School"){ %>
+                            <div class="categoryShowbtn" style="background-color: yellow;"> <%= value.category %></div>
+                        <%}%>  
+                        <% if(value.category==="Cleaning"){ %>
+                            <div class="categoryShowbtn" style="background-color: violet;"> <%= value.category %></div>
+                        <%}%>  
+                        <% if(value.category==="Other"){ %>
+                            <div class="categoryShowbtn" style="background-color:lightblue;"> <%= value.category %></div>
+                        <%}%>  
+
+                        <%}%>
+                </div>
+                <%})%>
 
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="./js/home.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="./js/home.js"></script>
 </body>
+
 </html>
+
+

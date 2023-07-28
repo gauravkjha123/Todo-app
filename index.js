@@ -1,11 +1,17 @@
 const express = require('express')
 const app = express()
 const path =require('path')
-const config=require('./config/db');
+
+require('./config/db');
 require('dotenv').config()
 const port=process.env.PORT || 3000;
 
-//server static files
+
+//Parse request data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Server static files
 app.use(express.static("public"))
 
 //Set view engine
