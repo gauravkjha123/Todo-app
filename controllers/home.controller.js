@@ -8,27 +8,28 @@ const showTask=async function  (req,res){
     res.render('home',{data})
 }
 
-const createTask=async function  (req,res){
-    try {
-        let {name,date,category}=req.body;
-        let obj={};
-        if (!name) {
-            throw Error("Task name is required")
-        }
-        obj.name=name;
-        obj.category=category
-        if (date) {
-            obj.date=new Date(date);
-        }
-        let task=new TaskModel(obj);
-        await task.save();
-       return res.redirect('/')
-    } catch (error) {
-        console.error('Error deleting documents:', error);
-        return res.status(500).render('error', { message: 'Internal server error' });
-    }
-}
+const createTask = async function (req, res) {
+  try {
+      const { name, date, category } = req.body;
 
+      if (!name) {
+          throw new Error("Task name is required");
+      }
+
+      const taskData = {
+          name,
+          category,
+          date: date ? new Date(date) : undefined,
+      };
+
+      const task = new TaskModel(taskData);
+      await task.save();
+      return res.redirect('/');
+  } catch (error) {
+      console.error('Error creating task:', error);
+      return res.redirect('/');;
+  }
+};
 const deleteTask = async function (req, res) {
     try {
       let { ids } = req.body;
@@ -43,7 +44,7 @@ const deleteTask = async function (req, res) {
     
     } catch (error) {
       console.error('Error deleting documents:', error);
-      return res.status(500).render('error', { message: 'Internal server error' });
+      return res.redirect('/');
     }
   };
 
