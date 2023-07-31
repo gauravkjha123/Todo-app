@@ -60,7 +60,7 @@
             <% data.map((value)=>{ %>
                 <div class="flex upper-border taskListContainer">
                     <div class="flex taskContainer">
-                        <div class="checkBoxContainer"><input id="checkBox" type="checkbox" value="<%= value.id %>"></div>
+                        <div class="checkBoxContainer"><input id="checkBox" type="checkbox" onclick="addItemFordelete(event)" value="<%= value.id %>"></div>
                         <div class="taskDetailsContainer">
                             <p> <%= value.name %></p>
                             <div class="flex dateContainer">

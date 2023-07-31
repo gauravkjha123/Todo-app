@@ -11,7 +11,7 @@ const port=process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Server static files
+//Serve static files
 app.use(express.static("public"))
 
 //Set view engine

@@ -57,8 +57,8 @@ function createCalender() {
       onChange: function (selectedDates, dateStr) {
         categoryAndDate.style.backgroundColor = "white";
         let dateText = document.getElementById("dateText");
-        dateInput.value = new Date(dateStr).toLocaleString().slice(0, -10);
-        dateText.innerHTML = new Date(dateStr).toLocaleString().slice(0, -10);
+        dateInput.value =dateStr;
+        dateText.innerHTML = dateStr;
       },
       onClose: function () {
         categoryAndDate.style.backgroundColor = "white";
@@ -106,9 +106,7 @@ async function deleteList() {
   location.reload();
 }
 
-function addItemFordelete() {
-  let checkBox = document.getElementById("checkBox");
-  checkBox.addEventListener("change", function (event) {
+function addItemFordelete(event) {
     if (event.target.checked) {
       deleteArr.push(event.target.value);
     } else {
@@ -116,8 +114,7 @@ function addItemFordelete() {
       if (ind !== -1) {
         deleteArr.splice(ind, 1);
       }
-    }
-  });
+    };
 }
 
 function addFocusFunctionality() {
@@ -142,7 +139,6 @@ function addFocusFunctionality() {
 
 addEventListener("load", function () {
   createCalender();
-  addItemFordelete();
   addFocusFunctionality();
   createCategorysList(category);
   let deleteBtn = document.getElementById("delete");
